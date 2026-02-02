@@ -1,0 +1,1 @@
+INSERT INTO mensagem (texto) VALUES ('Hello World vindo do PostgreSQL!');

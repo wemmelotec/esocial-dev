@@ -1,6 +1,6 @@
-# eSocial - Prefeitura de João Pessoa
+# eSocial
 
-Aplicação Spring Boot 3 + Thymeleaf + PostgreSQL para exibir mensagens do eSocial municipal.
+Aplicação Spring Boot 3 + Thymeleaf + PostgreSQL para exibir mensagens do eSocial.
 
 ## Requisitos
 - Java 17

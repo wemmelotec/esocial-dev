@@ -2,8 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>eSocial</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1 th:text="${mensagem}">Hello</h1>
+<header class="topbar">
+    <div class="brand">eSocial • Prefeitura de João Pessoa</div>
+    <nav class="menu">
+        <a class="active" href="/">Home</a>
+        <a href="/relatorio">Relatório</a>
+    </nav>
+ </header>
+
+<main class="hero">
+    <h1>Seja bem vindo ao sistema de relatório do e-social da prefeitura de João Pessoa</h1>
+    <p class="highlight">
+        Este ambiente apresenta relatórios e mensagens oficiais do eSocial municipal de forma simples e segura.
+    </p>
+</main>
 </body>
 </html>

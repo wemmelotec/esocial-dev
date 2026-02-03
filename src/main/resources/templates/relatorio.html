@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Relatório - eSocial</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="topbar">
+    <div class="brand">eSocial • Prefeitura de João Pessoa</div>
+    <nav class="menu">
+        <a href="/">Home</a>
+        <a class="active" href="/relatorio">Relatório</a>
+    </nav>
+</header>
+
+<main class="container">
+    <h1>Relatório de Mensagens</h1>
+    <div class="actions">
+        <form th:action="@{/relatorio}" method="get">
+            <input type="hidden" name="executar" value="true"/>
+            <button type="submit">Gerar relatório</button>
+        </form>
+    </div>
+
+    <div th:if="${executado == false}" class="empty">Clique em “Gerar relatório” para consultar as mensagens.</div>
+
+    <div th:if="${executado == true and #lists.isEmpty(mensagens)}" class="empty">Nenhuma mensagem encontrada no banco.</div>
+
+    <table th:if="${executado == true and !#lists.isEmpty(mensagens)}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Texto</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="msg : ${mensagens}">
+            <td th:text="${msg.id}">1</td>
+            <td th:text="${msg.texto}">Mensagem</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

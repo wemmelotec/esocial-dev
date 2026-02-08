@@ -1,22 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <meta charset="UTF-8">
     <title>eSocial</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 <header class="topbar">
-    <div class="brand">eSocial • Prefeitura de João Pessoa</div>
+    <div class="brand">eSocial - Prefeitura de Joao Pessoa</div>
     <nav class="menu">
         <a class="active" href="/">Home</a>
-        <a href="/relatorio">Relatório</a>
+        <a href="/relatorio">Relatorio</a>
     </nav>
- </header>
+    <div class="user-chip" sec:authorize="isAuthenticated()">
+        <div>
+            <div class="name" th:text="${usuarioNome}">Usuario</div>
+            <div th:text="${usuarioEmail}">email@exemplo.gov.br</div>
+        </div>
+        <a href="/logout">Sair</a>
+    </div>
+</header>
 
 <main class="hero">
-    <h1>Seja bem vindo ao sistema de relatório do e-social da prefeitura de João Pessoa</h1>
+    <h1 th:text="${mensagem}">Mensagem</h1>
     <p class="highlight">
-        Este ambiente apresenta relatórios e mensagens oficiais do eSocial municipal de forma simples e segura.
+        Autenticado via <strong th:text="${usuarioProvider}">gov.br</strong>,
+        subject <strong th:text="${usuarioSubject}">sub</strong>.
     </p>
 </main>
 </body>

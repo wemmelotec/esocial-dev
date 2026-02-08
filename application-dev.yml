@@ -13,3 +13,25 @@ spring:
   sql:
     init:
       mode: always
+  security:
+    oauth2:
+      client:
+        provider:
+          govbr:
+            # TODO: ajuste os endpoints ou issuer do ambiente do gov.br utilizado em desenvolvimento
+            authorization-uri: ${GOVBR_AUTH_URI:https://sso.teste.gov.br/realms/placeholder/protocol/openid-connect/auth}
+            token-uri: ${GOVBR_TOKEN_URI:https://sso.teste.gov.br/realms/placeholder/protocol/openid-connect/token}
+            jwk-set-uri: ${GOVBR_JWK_URI:https://sso.teste.gov.br/realms/placeholder/protocol/openid-connect/certs}
+            user-info-uri: ${GOVBR_USERINFO_URI:https://sso.teste.gov.br/realms/placeholder/protocol/openid-connect/userinfo}
+            end-session-uri: ${GOVBR_END_SESSION_URI:https://sso.teste.gov.br/realms/placeholder/protocol/openid-connect/logout}
+        registration:
+          govbr:
+            provider: govbr
+            client-id: ${GOVBR_CLIENT_ID:demo-client}
+            client-secret: ${GOVBR_CLIENT_SECRET:demo-secret}
+            authorization-grant-type: authorization_code
+            redirect-uri: ${GOVBR_REDIRECT_URI:{baseUrl}/login/oauth2/code/govbr}
+            scope:
+              - openid
+              - profile
+              - email

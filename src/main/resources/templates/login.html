@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Entrar - gov.br</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body class="auth-body">
+<main class="login-panel">
+    <div class="login-header">
+        <div class="brand">eSocial - Prefeitura de Joao Pessoa</div>
+        <p class="subtitle">Use sua conta gov.br para acessar com seguranca.</p>
+    </div>
+    <div th:if="${param.logout}" class="status success">Voce saiu com sucesso.</div>
+    <div th:if="${param.error}" class="status error">Nao foi possivel autenticar. Tente novamente.</div>
+
+    <a class="govbr-button" href="/oauth2/authorization/govbr">Entrar com gov.br</a>
+</main>
+</body>
+</html>

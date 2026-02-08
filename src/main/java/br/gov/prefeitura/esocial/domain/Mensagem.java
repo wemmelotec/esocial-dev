@@ -2,6 +2,9 @@ package br.gov.prefeitura.esocial.domain;
 
 import jakarta.persistence.*;
 
+/**
+ * Entidade JPA simples para mensagens exibidas nos relatorios.
+ */
 @Entity
 public class Mensagem {
 
@@ -9,6 +12,7 @@ public class Mensagem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Texto livre armazenado na tabela mensagem
     private String texto;
 
     public Long getId() {

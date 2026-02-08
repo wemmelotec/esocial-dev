@@ -1,28 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>Relatório - eSocial</title>
+    <meta charset="UTF-8">
+    <title>Relatorio - eSocial</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 <header class="topbar">
-    <div class="brand">eSocial • Prefeitura de João Pessoa</div>
+    <div class="brand">eSocial - Prefeitura de Joao Pessoa</div>
     <nav class="menu">
         <a href="/">Home</a>
-        <a class="active" href="/relatorio">Relatório</a>
+        <a class="active" href="/relatorio">Relatorio</a>
     </nav>
+    <div class="user-chip" sec:authorize="isAuthenticated()">
+        <div>
+            <div class="name" sec:authentication="principal.fullName">Usuario</div>
+            <div sec:authentication="principal.email">email@exemplo.gov.br</div>
+        </div>
+        <a href="/logout">Sair</a>
+    </div>
 </header>
 
 <main class="container">
-    <h1>Relatório de Mensagens</h1>
+    <h1>Relatorio de Mensagens</h1>
     <div class="actions">
         <form th:action="@{/relatorio}" method="get">
             <input type="hidden" name="executar" value="true"/>
-            <button type="submit">Gerar relatório</button>
+            <button type="submit">Gerar relatorio</button>
         </form>
     </div>
 
-    <div th:if="${executado == false}" class="empty">Clique em “Gerar relatório” para consultar as mensagens.</div>
+    <div th:if="${executado == false}" class="empty">Clique em "Gerar relatorio" para consultar as mensagens.</div>
 
     <div th:if="${executado == true and #lists.isEmpty(mensagens)}" class="empty">Nenhuma mensagem encontrada no banco.</div>
 

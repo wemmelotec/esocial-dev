@@ -7,6 +7,30 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+    defer-datasource-initialization: true
   sql:
     init:
       mode: always
+  security:
+    oauth2:
+      client:
+        provider:
+          govbr:
+            # Se o issuer estiver disponível, defina SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GOVBR_ISSUER_URI via ambiente.
+            authorization-uri: ${GOVBR_AUTH_URI:https://sso.teste.gov.br/realms/placeholder/protocol/openid-connect/auth}
+            token-uri: ${GOVBR_TOKEN_URI:https://sso.teste.gov.br/realms/placeholder/protocol/openid-connect/token}
+            jwk-set-uri: ${GOVBR_JWK_URI:https://sso.teste.gov.br/realms/placeholder/protocol/openid-connect/certs}
+            user-info-uri: ${GOVBR_USERINFO_URI:https://sso.teste.gov.br/realms/placeholder/protocol/openid-connect/userinfo}
+            # end-session-uri é usado para logout OIDC front-channel/back-channel quando disponível
+            end-session-uri: ${GOVBR_END_SESSION_URI:https://sso.teste.gov.br/realms/placeholder/protocol/openid-connect/logout}
+        registration:
+          govbr:
+            provider: govbr
+            client-id: ${GOVBR_CLIENT_ID:demo-client}
+            client-secret: ${GOVBR_CLIENT_SECRET:demo-secret}
+            authorization-grant-type: authorization_code
+            redirect-uri: ${GOVBR_REDIRECT_URI:{baseUrl}/login/oauth2/code/govbr}
+            scope:
+              - openid
+              - profile
+              - email
